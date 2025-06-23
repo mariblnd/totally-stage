@@ -14,6 +14,5 @@ def create_app():
     db.init_app(app)
 
     app.register_blueprint(stage_bp)
-    app.register_blueprint(entreprise_bp) 
 
     return app

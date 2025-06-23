@@ -20,8 +20,8 @@
             <tr>
                 <td>{{ stage.domaine }}</td>
                 <td>{{ stage.duree }}</td>
-                <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom }}</td>
-                <td>{{ stage.nom_entreprise.nom }} ({{ stage.entreprise.lieu }})</td>
+                <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }}</td>
+                <td>{{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})</td>
             </tr>
             {% endfor %}
         </tbody>
