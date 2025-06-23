@@ -1,6 +1,7 @@
-from app import app
-from flask import render_template
+from flask import Blueprint
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+bp = Blueprint('main', __name__)
+
+@bp.route('/')
+def home():
+    return 'Bienvenue sur Totally Stage !'
