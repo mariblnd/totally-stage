@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Totally Stage</title>
+    <meta charset="UTF-8">
+    <title>Liste des stages</title>
 </head>
 <body>
-    <h1>Bienvenue sur Totally Stage !</h1>
-    <p>Consultez où vos camarades sont en stage.</p>
+    <h1>Liste des stages</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Domaine</th>
+                <th>Durée</th>
+                <th>Étudiant</th>
+                <th>Entreprise</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stage in stages %}
+            <tr>
+                <td>{{ stage.domaine }}</td>
+                <td>{{ stage.duree }}</td>
+                <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom }}</td>
+                <td>{{ stage.nom_entreprise.nom }} ({{ stage.entreprise.lieu }})</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

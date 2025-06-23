@@ -1,6 +1,8 @@
+#Ce fichier crée l'application Flask
+
 from flask import Flask
 from .models import db
-from .routes import bp
+from .routes.stages import stage_bp
 
 def create_app():
     app = Flask(__name__)
@@ -11,9 +13,7 @@ def create_app():
 
     db.init_app(app)
 
-    with app.app_context():
-        db.create_all()
+    app.register_blueprint(stage_bp)
+    app.register_blueprint(entreprise_bp) 
 
-    app.register_blueprint(bp)
     return app
-

@@ -7,7 +7,7 @@ db = SQLAlchemy()
 class Etudiant(db.Model):
     __tablename__ = 'etudiant'
     id_etudiant = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(50), nullable=False)
+    nom_etudiant = db.Column(db.String(50), nullable=False)
     prenom = db.Column(db.String(50), nullable=False)
     filiere = db.Column(db.String(50), nullable=False)
     promo = db.Column(db.Integer, nullable=False)
@@ -19,7 +19,7 @@ class Etudiant(db.Model):
 class Entreprise(db.Model):
     __tablename__ = 'entreprise'
     id_entreprise = db.Column(db.Integer, primary_key=True)
-    nom = db.Column(db.String(100), nullable=False)
+    nom_entreprise = db.Column(db.String(100), nullable=False)
     lieu = db.Column(db.String(100), nullable=False)
 
     # One company → many stages
@@ -31,8 +31,7 @@ class Stage(db.Model):
     id_stage = db.Column(db.Integer, primary_key=True)
     domaine = db.Column(db.String(100), nullable=False)
     duree = db.Column(db.Integer, nullable=False)
-    date_debut = db.Column(db.Date)
-    date_fin = db.Column(db.Date)
+
 
     # Foreign keys
     id_etudiant = db.Column(db.Integer, db.ForeignKey('etudiant.id_etudiant'), nullable=False)
