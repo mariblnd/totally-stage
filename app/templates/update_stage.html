@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Stage</title>
+</head>
+<body>
+    <h1>Update Stage</h1>
+    <form method="POST">
+        <label for="domaine">Domaine:</label>
+
+        <!-- value = colonne domaine de la table stage -->
+
+        <input type="text" id="domaine" name="domaine" value="{{ stage.domaine }}" required><br><br>
+
+        <label for="duree">Durée:</label>
+        <input type="number" id="duree" name="duree" value="{{ stage.duree }}" required><br><br>
+
+        <label for="id_etudiant">Étudiant:</label>
+        <select id="id_etudiant" name="id_etudiant" required>
+            {% for etudiant in etudiants %}
+                <option value="{{ etudiant.id_etudiant }}" {% if etudiant.id_etudiant == stage.id_etudiant %}selected{% endif %}>
+                    {{ etudiant.prenom }} {{ etudiant.nom_etudiant }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="id_entreprise">Entreprise:</label>
+        <select id="id_entreprise" name="id_entreprise" required>
+            {% for entreprise in entreprises %}
+                <option value="{{ entreprise.id_entreprise }}" {% if entreprise.id_entreprise == stage.id_entreprise %}selected{% endif %}>
+                    {{ entreprise.nom_entreprise }} ({{ entreprise.lieu }})
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Update</button>
+
+        <a href="{{ url_for('stage_bp.liste_stages') }}">Cancel</a>
+
+    </form>
+</body>

@@ -22,9 +22,16 @@
                 <td>{{ stage.duree }}</td>
                 <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }}</td>
                 <td>{{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})</td>
+                <td>
+                    <a href="{{ url_for('stage_bp.update_stage', stage_id=stage.id_stage) }}">✏️</a>
+                    <!-- url_for : génère une url pour nos routes -->
+                    <!-- dans notre cas, ça va nous envoyer vers /update_stage --> 
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <a href="./add_stage">Ajouter un stage</a>
 </body>
 </html>
