@@ -12,7 +12,8 @@
                 <th>Domaine</th>
                 <th>Durée</th>
                 <th>Étudiant</th>
-                <th>Entreprise</th>
+                <th>Filière (Promo)</th>
+                <th>Entreprise (Lieu)</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +21,8 @@
             <tr>
                 <td>{{ stage.domaine }}</td>
                 <td>{{ stage.duree }} mois</td>
-                <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }}</td>
+                <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }} </td>
+                <td>{{ stage.etudiant.filiere }} ({{ stage.etudiant.promo }})</td>
                 <td>{{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})</td>
                 <td>
                     <form action="{{ url_for('stage_bp.update_stage', stage_id=stage.id_stage) }}" method="get" style="display:inline;">
