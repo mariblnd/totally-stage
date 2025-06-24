@@ -6,6 +6,25 @@
 </head>
 <body>
     <h1>Liste des stages</h1>
+
+    <!-- <label for="sortSelect">Durée :</label>
+    <select id="sortSelect">
+        <option value="" {% if not request.args.get('sort') %}selected{% endif %}>Par défaut</option>
+        <option value="asc" {% if request.args.get('sort') == 'asc' %}selected{% endif %}>Ordre croissant</option>
+        <option value="desc" {% if request.args.get('sort') == 'desc' %}selected{% endif %}>Ordre décroissant</option>
+    </select>
+
+    <script>
+    document.getElementById('sortSelect').addEventListener('change', function() {
+        const value = this.value;
+        if (value) {
+            window.location.href = "?sort=" + value;
+        } else {
+            window.location.href = "?";
+        }
+    });
+    </script> -->
+
     <table>
         <thead>
             <tr>

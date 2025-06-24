@@ -4,11 +4,16 @@ from app import db
 
 stage_bp = Blueprint('stage_bp', __name__)
 
-# Route pour afficher la liste des stages
 @stage_bp.route('/')
 def liste_stages():
     # Récupération de tous les stages depuis la base de données
-    stages = Stage.query.all()
+    sort = request.args.get('sort')
+    if sort == 'desc':
+        stages = Stage.query.order_by(Stage.duree.desc()).all()
+    elif sort == 'asc':
+        stages = Stage.query.order_by(Stage.duree.asc()).all()
+    else:
+        stages = Stage.query.all()
     # Rendu du template avec la liste des stages
     return render_template('index.html', stages=stages)
 
