@@ -83,26 +83,5 @@ def delete_stage(stage_id):
     db.session.commit()
     return redirect(url_for('stage_bp.liste_stages'))
 
-@stage_bp.route('/add_etudiant', methods=['GET', 'POST'])
-def add_etudiant():
-    if request.method == 'POST':
-        nom_etudiant = request.form.get('nom_etudiant')
-        prenom = request.form.get('prenom')
-        filiere = request.form.get('filiere')
-        promo = request.form.get('promo')
-        new_etudiant = Etudiant(nom_etudiant=nom_etudiant, prenom=prenom, filiere=filiere, promo=promo)
-        db.session.add(new_etudiant)
-        db.session.commit()
-        return redirect(url_for('stage_bp.add_stage'))
-    return render_template('add_etudiant.html')
 
-@stage_bp.route('/add_entreprise', methods=['GET', 'POST'])
-def add_entreprise():
-    if request.method == 'POST':
-        nom_entreprise = request.form.get('nom_entreprise')
-        lieu = request.form.get('lieu')
-        new_entreprise = Entreprise(nom_entreprise=nom_entreprise, lieu=lieu)
-        db.session.add(new_entreprise)
-        db.session.commit()
-        return redirect(url_for('stage_bp.add_stage'))
-    return render_template('add_entreprise.html')
+

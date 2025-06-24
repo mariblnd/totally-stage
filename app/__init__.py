@@ -3,6 +3,9 @@
 from flask import Flask
 from .models import db
 from .routes.stages import stage_bp
+from .routes.entreprises import entreprise_bp
+from .routes.etudiants import etudiant_bp
+
 
 def create_app():
     app = Flask(__name__)
@@ -14,5 +17,6 @@ def create_app():
     db.init_app(app)
 
     app.register_blueprint(stage_bp)
-
+    app.register_blueprint(entreprise_bp)
+    app.register_blueprint(etudiant_bp)
     return app

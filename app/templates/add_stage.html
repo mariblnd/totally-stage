@@ -22,7 +22,7 @@
                 <option value="{{ etudiant.prenom }} {{ etudiant.nom_etudiant }}">
             {% endfor %}
         </datalist>
-        <a href="{{ url_for('stage_bp.add_etudiant') }}">Ajouter un nouvel étudiant</a><br><br>
+        <a href="{{ url_for('etudiant_bp.add_etudiant') }}">Ajouter un nouvel étudiant</a><br><br>
 
         <label for="entreprise">Entreprise:</label>
         <input list="entreprises" id="entreprise" name="entreprise_nom" required>
@@ -31,7 +31,7 @@
                 <option value="{{ entreprise.nom_entreprise }}">
             {% endfor %}
         </datalist>
-        <a href="{{ url_for('stage_bp.add_entreprise') }}">Ajouter une nouvelle entreprise</a><br><br>
+        <a href="{{ url_for('entreprise_bp.add_entreprise') }}">Ajouter une nouvelle entreprise</a><br><br>
 
 
         <button type="submit">Ajouter le stage</button>
