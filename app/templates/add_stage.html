@@ -30,5 +30,11 @@
 
         <button type="submit">Ajouter le stage</button>
     </form>
+
+    <p>{{message}}</p>
+
+    {% if (message)%}
+    <button onclick="window.location.href='/'">Retour à la liste des stages</button>
+    {% endif %}
 </body>
 </html>

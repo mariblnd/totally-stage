@@ -31,7 +31,8 @@ def add_stage():
         db.session.add(new_stage)
         db.session.commit()
         return render_template('add_stage.html', message="Stage ajouté avec succès !", etudiants=Etudiant.query.all(), entreprises=Entreprise.query.all())
-
+        
+    
     # Cas GET : afficher le formulaire
     etudiants = Etudiant.query.all()
     entreprises = Entreprise.query.all()
@@ -62,3 +63,10 @@ def update_stage(stage_id):
         etudiants=etudiants,
         entreprises=entreprises
     )
+
+@stage_bp.route('/delete_stage/<int:stage_id>', methods=['POST'])
+def delete_stage(stage_id):
+    stage = Stage.query.get_or_404(stage_id)
+    db.session.delete(stage)
+    db.session.commit()
+    return redirect(url_for('stage_bp.liste_stages'))
