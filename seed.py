@@ -22,5 +22,3 @@ with app.app_context():
     stage = Stage(domaine="IA", duree=6, id_etudiant=etudiant.id_etudiant, id_entreprise=entreprise.id_entreprise)
     db.session.add(stage)
     db.session.commit()
-
-    print("✓ Données insérées avec succès.")
