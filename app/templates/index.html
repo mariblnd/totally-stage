@@ -19,13 +19,19 @@
             {% for stage in stages %}
             <tr>
                 <td>{{ stage.domaine }}</td>
-                <td>{{ stage.duree }}</td>
+                <td>{{ stage.duree }} mois</td>
                 <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }}</td>
                 <td>{{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})</td>
                 <td>
-                    <a href="{{ url_for('stage_bp.update_stage', stage_id=stage.id_stage) }}">✏️</a>
+                    <form action="{{ url_for('stage_bp.update_stage', stage_id=stage.id_stage) }}" method="get" style="display:inline;">
+                        <button type="submit">
+                            ✏️
+                        </button>
+                    </form>
                     <form action="{{ url_for('stage_bp.delete_stage', stage_id=stage.id_stage) }}" method="post" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Supprimer ce stage ?')">🗑️</button>
+                        <button type="submit" onclick="return confirm('Supprimer ce stage ?')">
+                            🗑️
+                        </button>
                     </form>
 
                     <!-- url_for : génère une url pour nos routes -->

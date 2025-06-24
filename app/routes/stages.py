@@ -30,7 +30,7 @@ def add_stage():
         )
         db.session.add(new_stage)
         db.session.commit()
-        return render_template('add_stage.html', message="Stage ajouté avec succès !", etudiants=Etudiant.query.all(), entreprises=Entreprise.query.all())
+        return redirect(url_for('stage_bp.liste_stages'))
         
     
     # Cas GET : afficher le formulaire

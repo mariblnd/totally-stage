@@ -12,7 +12,7 @@
         <input type="text" id="domaine" name="domaine" required><br><br>
 
         <label for="duree">Durée:</label>
-        <input type="text" id="duree" name="duree" required><br><br>
+        <input type="number" id="duree" name="duree" required><br><br>
 
         <label for="etudiant">Étudiant:</label>
         <select id="etudiant" name="id_etudiant" required>
@@ -29,12 +29,9 @@
         </select><br><br>
 
         <button type="submit">Ajouter le stage</button>
+
+        <a href="{{ url_for('stage_bp.liste_stages') }}">Cancel</a>
+
     </form>
-
-    <p>{{message}}</p>
-
-    {% if (message)%}
-    <button onclick="window.location.href='/'">Retour à la liste des stages</button>
-    {% endif %}
 </body>
 </html>
