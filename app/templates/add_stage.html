@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,17 @@
             {% for etudiant in etudiants %}
                 <option value="{{ etudiant.id_etudiant }}">{{ etudiant.prenom }} {{ etudiant.nom_etudiant }}</option>
             {% endfor %}
-        </select><br><br>
+        </select>
+        <a href="{{ url_for('stage_bp.add_etudiant') }}">Ajouter un nouvel étudiant</a><br><br>
 
         <label for="entreprise">Entreprise:</label>
         <select id="entreprise" name="id_entreprise" required>
             {% for entreprise in entreprises %}
                 <option value="{{ entreprise.id_entreprise }}">{{ entreprise.nom_entreprise }} ({{ entreprise.lieu }})</option>
             {% endfor %}
-        </select><br><br>
+        </select>
+        <a href="{{ url_for('stage_bp.add_entreprise') }}">Ajouter une nouvelle entreprise</a><br><br>
+
 
         <button type="submit">Ajouter le stage</button>
 
