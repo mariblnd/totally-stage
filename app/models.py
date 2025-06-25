@@ -21,6 +21,7 @@ class Entreprise(db.Model):
     id_entreprise = db.Column(db.Integer, primary_key=True)
     nom_entreprise = db.Column(db.String(100), nullable=False)
     lieu = db.Column(db.String(100), nullable=False)
+    logo = db.Column(db.String(200))
 
     # One company → many stages
     stages = db.relationship('Stage', backref='entreprise', lazy=True)

@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Ajouter un entreprise</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <label for="nom_entreprise">Nom de l'entreprise :</label>
         <input type="text" id="nom_entreprise" name="nom_entreprise" required><br><br>
         <label for="lieu">Lieu :</label>
         <input type="text" id="lieu" name="lieu" required><br><br>
+        <label for="logo">Logo :</label>
+        <input type="file" id="logo" name="logo"><br><br>
         <button type="submit">Ajouter l'entreprise</button>
         <a href="{{ url_for('stage_bp.add_stage') }}">Annuler</a>
     </form>

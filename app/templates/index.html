@@ -40,7 +40,10 @@
             {% for stage in stages %}
             <tr>
                 <td>{{ stage.domaine }}</td>
-                <td>{{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})</td>
+                <td>
+                <img src="{{ url_for('static', filename='logos/' ~ stage.entreprise.logo) }}" alt="Logo" width="50">
+                {{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})
+                </td>
                 <td>{{ stage.duree }} mois</td>
                 <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }} </td>
                 <td>{{ stage.etudiant.filiere }} ({{ stage.etudiant.promo }})</td>
