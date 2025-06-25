@@ -26,14 +26,22 @@ class Entreprise(db.Model):
     # One company → many stages
     stages = db.relationship('Stage', backref='entreprise', lazy=True)
 
+class Domaine(db.Model):
+    __tablename__ = 'domaine'
+    id_domaine = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(100), nullable=False, unique=True)
+
+    # One domaine → many stages
+    stages = db.relationship('Stage', backref='domaine', lazy=True)
+
 
 class Stage(db.Model):
     __tablename__ = 'stage'
     id_stage = db.Column(db.Integer, primary_key=True)
-    domaine = db.Column(db.String(100), nullable=False)
     duree = db.Column(db.Integer, nullable=False)
 
 
     # Foreign keys
     id_etudiant = db.Column(db.Integer, db.ForeignKey('etudiant.id_etudiant'), nullable=False)
     id_entreprise = db.Column(db.Integer, db.ForeignKey('entreprise.id_entreprise'), nullable=False)
+    id_domaine = db.Column(db.Integer, db.ForeignKey('domaine.id_domaine'), nullable=False)

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des stages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <h1>Liste des stages</h1>
@@ -30,6 +31,7 @@
             <tr>
                 <th>Domaine</th>
                 <th>Entreprise (Lieu)</th>
+                <th> </th>
                 <th>Durée</th>
                 <th>Étudiant</th>
                 <th>Filière (Promo)</th>
@@ -39,11 +41,11 @@
         <tbody>
             {% for stage in stages %}
             <tr>
-                <td>{{ stage.domaine }}</td>
+                <td>{{ stage.domaine.nom }}</td>
                 <td>
-                <img src="{{ url_for('static', filename='logos/' ~ stage.entreprise.logo) }}" alt="Logo" width="50">
                 {{ stage.entreprise.nom_entreprise }} ({{ stage.entreprise.lieu }})
                 </td>
+                <td><img src="{{ url_for('static', filename='logos/' ~ stage.entreprise.logo) }}" alt="Logo" width="50"></td>
                 <td>{{ stage.duree }} mois</td>
                 <td>{{ stage.etudiant.prenom }} {{ stage.etudiant.nom_etudiant }} </td>
                 <td>{{ stage.etudiant.filiere }} ({{ stage.etudiant.promo }})</td>

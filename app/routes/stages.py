@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, url_for, redirect
-from app.models import Stage, Etudiant, Entreprise
+from app.models import Stage, Etudiant, Entreprise, Domaine
 from app import db
 
 stage_bp = Blueprint('stage_bp', __name__)
@@ -20,11 +20,13 @@ def liste_stages():
 @stage_bp.route('/add_stage', methods=['GET', 'POST'])
 def add_stage():
     if request.method == 'POST':
-        domaine = request.form.get('domaine')
+        domaine_nom = request.form.get('domaine_nom')
         duree = request.form.get('duree')
         etudiant_nom = request.form.get('etudiant_nom')
         entreprise_nom = request.form.get('entreprise_nom')
 
+        # Find domain by name
+        domaine = Domaine.query.filter_by(nom=domaine_nom).first()
         # Find student by name
         etudiant = Etudiant.query.filter(
             (Etudiant.prenom + ' ' + Etudiant.nom_etudiant) == etudiant_nom
@@ -37,10 +39,10 @@ def add_stage():
             return "Student or company not found", 400
 
         new_stage = Stage(
-            domaine=domaine,
             duree=duree,
             id_etudiant=etudiant.id_etudiant,
-            id_entreprise=entreprise.id_entreprise
+            id_entreprise=entreprise.id_entreprise,
+            id_domaine=domaine.id_domaine
         )
         db.session.add(new_stage)
         db.session.commit()
@@ -48,32 +50,49 @@ def add_stage():
 
     etudiants = Etudiant.query.all()
     entreprises = Entreprise.query.all()
-    return render_template('add_stage.html', etudiants=etudiants, entreprises=entreprises)
+    domaines = Domaine.query.all()
+    return render_template('add_stage.html', etudiants=etudiants, entreprises=entreprises, domaines=domaines)
+
 
 
 @stage_bp.route('/update_stage/<int:stage_id>', methods=['GET', 'POST'])
 def update_stage(stage_id):
-
-    # Récupérer le stage à modifier
     stage = Stage.query.get_or_404(stage_id)
-
-    # Récupérer la liste des étudiants / entreprises
     etudiants = Etudiant.query.all()
     entreprises = Entreprise.query.all()
+    domaines = Domaine.query.all()
 
     if request.method == 'POST':
-        stage.domaine = request.form['domaine']
-        stage.duree = request.form['duree']
-        stage.id_etudiant = request.form['id_etudiant']
-        stage.id_entreprise = request.form['id_entreprise']
+        domaine_nom = request.form.get('domaine_nom')
+        duree = request.form.get('duree')
+        etudiant_nom = request.form.get('etudiant_nom')
+        entreprise_nom = request.form.get('entreprise_nom')
+
+        # Trouver les objets correspondants
+        domaine = Domaine.query.filter_by(nom=domaine_nom).first()
+        etudiant = Etudiant.query.filter(
+            (Etudiant.prenom + ' ' + Etudiant.nom_etudiant) == etudiant_nom
+        ).first()
+        entreprise = Entreprise.query.filter_by(nom_entreprise=entreprise_nom).first()
+
+        if not domaine or not etudiant or not entreprise:
+            return "Domaine, étudiant ou entreprise non trouvé", 400
+
+        # Mettre à jour le stage
+        stage.duree = duree
+        stage.id_etudiant = etudiant.id_etudiant
+        stage.id_entreprise = entreprise.id_entreprise
+        stage.id_domaine = domaine.id_domaine
+
         db.session.commit()
-        return redirect(url_for('stage_bp.liste_stages'))  # index.html
+        return redirect(url_for('stage_bp.liste_stages'))
 
     return render_template(
         'update_stage.html',
         stage=stage,
         etudiants=etudiants,
-        entreprises=entreprises
+        entreprises=entreprises,
+        domaines=domaines
     )
 
 @stage_bp.route('/delete_stage/<int:stage_id>', methods=['POST'])
