@@ -14,7 +14,8 @@ def add_entreprise():
         logo_filename = None
         if logo_file and logo_file.filename:
             logo_filename = logo_file.filename
-            logo_path = os.path.join(current_app.root_path, 'static', 'logos', logo_filename)
+            logo_path = os.path.join(current_app.root_path, '..', 'static', 'logos', logo_filename)
+            logo_path = os.path.abspath(logo_path)
             os.makedirs(os.path.dirname(logo_path), exist_ok=True)
             logo_file.save(logo_path)
         new_entreprise = Entreprise(nom_entreprise=nom_entreprise, lieu=lieu, logo=logo_filename)
