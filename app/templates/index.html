@@ -85,6 +85,12 @@
         </tbody>
     </table>
 
-    <a href="./add_stage">Ajouter un stage</a>
+    <form action="{{ url_for('stage_bp.add_stage') }}" method="get" style="display:inline;">
+        <button type="submit" class="btn-main">Ajouter un stage</button>
+    </form>
+    <form action="{{ url_for('auth_bp.logout') }}" method="get" style="display:inline; margin-left: 1em;">
+        <button type="submit" class="btn-logout">Se déconnecter</button>
+    </form>
+
 </body>
 </html>

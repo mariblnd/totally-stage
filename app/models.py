@@ -1,5 +1,6 @@
 
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 #sert à initialiser une instance de SQLAlchemy dans une application
 db = SQLAlchemy()
@@ -11,6 +12,14 @@ class Etudiant(db.Model):
     prenom = db.Column(db.String(50), nullable=False)
     filiere = db.Column(db.String(50), nullable=False)
     promo = db.Column(db.Integer, nullable=False)
+    login = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     # One student → many stages
     stages = db.relationship('Stage', backref='etudiant', lazy=True)
