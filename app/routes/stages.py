@@ -12,6 +12,8 @@ def liste_stages():
         stages = Stage.query.order_by(Stage.duree.desc()).all()
     elif sort == 'asc':
         stages = Stage.query.order_by(Stage.duree.asc()).all()
+    elif sort == 'domain':
+        stages = Stage.query.join(Domaine).order_by(Domaine.nom.asc()).all()
     else:
         stages = Stage.query.all()
     # Rendu du template avec la liste des stages

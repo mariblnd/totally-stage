@@ -13,6 +13,7 @@
         <option value="" {% if not request.args.get('sort') %}selected{% endif %}>Par défaut</option>
         <option value="asc" {% if request.args.get('sort') == 'asc' %}selected{% endif %}>Ordre croissant</option>
         <option value="desc" {% if request.args.get('sort') == 'desc' %}selected{% endif %}>Ordre décroissant</option>
+        <option value="domain" {% if request.args.get('sort') == 'domain' %}selected{% endif %}>Par domaine</option>
     </select>
 
     <script>
