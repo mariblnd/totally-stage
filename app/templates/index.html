@@ -27,6 +27,19 @@
     });
     </script> 
 
+    <form method="get" style="display:inline; margin-right: 1em;">
+        <label for="domaineSelect">Filtrer par domaine :</label>
+        <select id="domaineSelect" name="domaine" onchange="this.form.submit()">
+            <option value="">Tous</option>
+            {% for domaine in domaines %}
+                <option value="{{ domaine.nom }}" {% if selected_domaine == domaine.nom %}selected{% endif %}>{{ domaine.nom }}</option>
+            {% endfor %}
+        </select>
+        {% if request.args.get('sort') %}
+            <input type="hidden" name="sort" value="{{ request.args.get('sort') }}">
+        {% endif %}
+    </form>
+
     <table>
         <thead>
             <tr>

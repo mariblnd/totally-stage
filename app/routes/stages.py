@@ -7,17 +7,20 @@ stage_bp = Blueprint('stage_bp', __name__)
 @stage_bp.route('/')
 def liste_stages():
     # Récupération de tous les stages depuis la base de données
+    domaines = Domaine.query.order_by(Domaine.nom.asc()).all()
+    selected_domaine = request.args.get('domaine')
     sort = request.args.get('sort')
+    query = Stage.query
+    if selected_domaine:
+        query = query.join(Domaine).filter(Domaine.nom == selected_domaine)
     if sort == 'desc':
-        stages = Stage.query.order_by(Stage.duree.desc()).all()
+        query = query.order_by(Stage.duree.desc())
     elif sort == 'asc':
-        stages = Stage.query.order_by(Stage.duree.asc()).all()
+        query = query.order_by(Stage.duree.asc())
     elif sort == 'domain':
-        stages = Stage.query.join(Domaine).order_by(Domaine.nom.asc()).all()
-    else:
-        stages = Stage.query.all()
-    # Rendu du template avec la liste des stages
-    return render_template('index.html', stages=stages)
+        query = query.join(Domaine).order_by(Domaine.nom.asc())
+    stages = query.all()
+    return render_template('index.html', stages=stages, domaines=domaines, selected_domaine=selected_domaine)
 
 @stage_bp.route('/add_stage', methods=['GET', 'POST'])
 def add_stage():
