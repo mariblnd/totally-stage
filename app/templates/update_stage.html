@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Stage</title>
+    <title>Modifier le Stage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Update Stage</h1>
+    <h1>Modifier le stage</h1>
     <form method="POST">
         <label for="domaine">Domaine:</label>
         <input list="domaines" id="domaine" name="domaine_nom" value="{{ stage.domaine.nom }}" required>
@@ -17,7 +18,7 @@
         </datalist>
         <br><br>
 
-        <label for="duree">Durée:</label>
+        <label for="duree">Durée (en mois):</label>
         <input type="number" id="duree" name="duree" value="{{ stage.duree }}" required><br><br>
 
         <label for="etudiant">Étudiant:</label>
@@ -38,5 +39,5 @@
         </datalist>
         <br><br>
 
-        <button type="submit">Update</button>
-        <a href="{{ url_for('stage_bp.liste_stages') }}">Cancel</a>
+        <button type="submit">Modifier</button>
+        <a href="{{ url_for('stage_bp.liste_stages') }}">Annuler</a>
