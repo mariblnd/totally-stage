@@ -5,6 +5,7 @@ from .models import db
 from .routes.stages import stage_bp
 from .routes.entreprises import entreprise_bp
 from .routes.etudiants import etudiant_bp
+from .routes.api import api_bp
 
 
 def create_app():
@@ -19,4 +20,5 @@ def create_app():
     app.register_blueprint(stage_bp)
     app.register_blueprint(entreprise_bp)
     app.register_blueprint(etudiant_bp)
+    app.register_blueprint(api_bp)
     return app
