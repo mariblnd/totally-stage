@@ -13,7 +13,7 @@ def register():
         filiere = request.form['filiere']
         promo = request.form['promo']
 
-        # Check if login already exists
+        # Si le login existe déjà = message d'erreur
         if Etudiant.query.filter_by(login=login).first():
             flash("Ce nom d'utilisateur existe déjà. Choisissez-en un autre.")
             return render_template('add_etudiant.html')

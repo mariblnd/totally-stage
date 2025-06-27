@@ -3,7 +3,7 @@ from app.models import Stage, Domaine, Entreprise, Etudiant, db
 
 api_bp = Blueprint('api_bp', __name__, url_prefix='/api')
 
-# ----------- STAGES CRUD -----------
+#STAGES CRUD COMPLET
 @api_bp.route('/stages', methods=['GET'])
 def get_stages():
     stages = Stage.query.all()
@@ -75,7 +75,7 @@ def delete_stage(stage_id):
     db.session.commit()
     return jsonify({'message': 'Stage deleted'})
 
-# ----------- ENTREPRISES CRUD (exemple GET) -----------
+#ENTREPRISE
 @api_bp.route('/entreprises', methods=['GET'])
 def get_entreprises():
     entreprises = Entreprise.query.all()
@@ -84,7 +84,7 @@ def get_entreprises():
         for e in entreprises
     ])
 
-# ----------- ETUDIANTS CRUD (exemple GET) -----------
+#ETUDIANTS
 @api_bp.route('/etudiants', methods=['GET'])
 def get_etudiants():
     etudiants = Etudiant.query.all()
@@ -93,7 +93,7 @@ def get_etudiants():
         for e in etudiants
     ])
 
-# ----------- DOMAINES CRUD (exemple GET) -----------
+#DOMAINES CRUD
 @api_bp.route('/domaines', methods=['GET'])
 def get_domaines():
     domaines = Domaine.query.all()
